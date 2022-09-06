@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Notes Web</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <style>
+        body{
+            background: url('./assets/img/background.jfif') no-repeat center center/cover;
+        }
+        .card{
+            background-color: #fff;
+            opacity: 0.8;
+            box-shadow: 16px 16px 27px #111;
+        }
+        
+        .container-fluid{
+            display: flex;
+            justify-content: center;
+        }
+        .container-fluid .notecard{
+            background-color: #fff;
+            border: 2px solid #111;
+            opacity: 0.8;
+        }
+        
+        .form-control, .form-group{
+            border: 2px solid #111;
+            outline: none;
+        }
+        .form-group{
+            border: none;
+            border-radius: 8px;
+        }
+        
+        .card-text{
+            font-weight: 600;
+        }
+        h1{
+            font-size: 50px;
+            font-weight: 600;
+            text-shadow: 4px 4px 20px #fff;
+
+        }
+        .btn{
+            border: 2px solid rgb(5, 119, 240);
+        }
+        .btn:hover{
+            background-color: transparent;
+            color: rgb(5, 119, 240);
+        }
+        
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: #fff">MyNotesWeb</a>
+        <button
+          class="navbar-toggler bg-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              id="searchTxt" 
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-3">
+      <h1 style="text-align: center;">Welcome to My Note Web</h1>
+      <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <h5 class="card-title">Add Title</h5>
+                <input type="text" class="form-control" id="title" placeholder="Add Title">
+              </div>
+          <h5 class="card-title">Add a Note</h5>
+          <div class="form-group my-3">
+            <textarea class="form-control" id="addTxt" rows="3" placeholder="Add Note"></textarea>
+          </div>
+          <button class="btn btn-primary" id="addBtn">Add Note</button>
+        </div>
+      </div>
+
+      <hr />
+      <h1 style="text-align: center;">Your Notes</h1>
+      <hr />
+      <div id="notes" class="row container-fluid">
+        
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
