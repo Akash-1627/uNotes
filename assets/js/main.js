@@ -48,6 +48,8 @@ function showNotes() {
             ${element.text}
           </p>
           <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
+          <button id="${index}" onclick="editNote(this.id)" class="btn btn-primary">Edit Note</button>
+
         </div>
       </div> `;
   });
@@ -76,6 +78,30 @@ function deleteNote(index) {
   localStorage.setItem("notes", JSON.stringify(notesObj));
   showNotes();
 }
+
+
+// function for editing the note
+
+function editNote(index){
+  let notes = localStorage.getItem("notes");
+  if (notes == null) {
+    notesObj = [];
+  } else {
+    notesObj = JSON.parse(notes);
+  }
+  let popped = notesObj[index];
+  
+
+  let addTitle = document.getElementById("title");
+  let addTxt = document.getElementById('addTxt');
+  addTitle.value = `${popped.title}`;
+  addTxt.value =`${popped.text}`;
+  
+  deleteNote();
+}
+
+
+
 
 // code for the search bar
 
