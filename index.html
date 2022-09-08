@@ -11,6 +11,7 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
+    
     <style>
         body{
             background: url('./assets/img/background.jfif') no-repeat center center/cover;
@@ -67,6 +68,27 @@
           
 
         }
+        .buttonDisp{
+          display: flex;
+        }
+        .design{
+          width: 100%;
+          display: grid;
+          grid-template-columns: 80% 20%;
+        }
+        .design img{
+          width: 25px;
+          height: 25px;
+          margin-left: 2rem;
+          
+        }
+        
+        .dispNone{
+          display: none;
+        }
+        .dispBlock{
+          display: block;
+        }
         
 
     </style>
@@ -116,13 +138,22 @@
           <div class="form-group my-3">
             <textarea class="form-control" id="addTxt" rows="3" placeholder="Add Note"></textarea>
           </div>
-          <button class="btn btn-primary" id="addBtn">Add Note</button>
+          <div class="buttonDisp">
+            <button class="btn btn-primary" id="addBtn">Add Note</button>
+            <div class="form-check mx-3 my-2">
+              <input class="form-check-input" type="checkbox" value="" id="checkBx">
+              <label class="form-check-label" for="flexCheckDefault">
+                Mark as Important
+              </label>
+            </div>
+          </div>
         </div>
       </div>
 
       <hr />
       <h1 style="text-align: center;">Your Notes</h1>
       <hr />
+      
       <div id="notes" class="row container-fluid">
         
       </div>
@@ -130,11 +161,11 @@
 
     <footer class="page-footer font-small bg-dark">
 
-      <!-- Copyright -->
+      
       <div class="footer-copyright text-center py-2" style="color: #fff;">© 2022 Copyright:
         <a href="/"> Akash Chakraborty</a>
       </div>
-      <!-- Copyright -->
+      
     
     </footer>
 
@@ -143,6 +174,7 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
+    
     <script src="assets/js/main.js"></script>
   </body>
 </html>
