@@ -27,6 +27,7 @@ addbtn.addEventListener("click", function (e) {
   let myObj = {
     title: addTitle.value, 
     text: addTxt.value,
+    check: checkBx.checked,
     checkbox: imag
   }
   
@@ -72,14 +73,16 @@ function showNotes() {
       
   });
   
-
+  let buttons = document.getElementById('buttons');
   let notesElm = document.getElementById("notes");
   if (notesObj.length != 0) {
     notesElm.innerHTML = html;
+    buttons.style.display = "flex";
     
     
   } else {
     notesElm.innerHTML = `<center><b>Nothing to show! Use "Add Note" to add your first note.</b></center>`;
+    buttons.style.display = "none";
     
     
   }
@@ -141,11 +144,18 @@ function editNote(index){
   }
   let popped = notesObj[index];
   
-
+  let checkBx = document.getElementById("checkBx")
   let addTitle = document.getElementById("title");
   let addTxt = document.getElementById('addTxt');
   addTitle.value = `${popped.title}`;
   addTxt.value =`${popped.text}`;
+  if(popped.check == true){
+    checkBx.checked = true;
+
+  }
+  else{
+    checkBx.checked = false;
+  }
   
   deleteNote();
 }
@@ -159,11 +169,60 @@ search.addEventListener("input", function(){
     let notecards = document.getElementsByClassName("notecard");
     Array.from(notecards).forEach(function(element){
         let cardTxt = element.getElementsByTagName("p")[0].innerText.toLowerCase();
-        if(cardTxt.includes(inputVal)){
+        let cardTitle = element.getElementsByTagName("h5")[0].innerText.toLowerCase();
+        if(cardTxt.includes(inputVal) || cardTitle.includes(inputVal)){
             element.style.display = "block";
         }
         else{
             element.style.display = "none";
         }
     });
+});
+
+// code for filtering buttons
+
+
+// code for important button
+
+let imp = document.getElementById('imp');
+imp.addEventListener('click', function(e){
+  let notes = localStorage.getItem("notes");
+  if (notes == null) {
+    notesObj = [];
+  } else {
+    notesObj = JSON.parse(notes);
+  }
+
+  let notecards = document.getElementsByClassName("notecard");
+  Array.from(notecards).forEach(function(element){
+    let cardTxt = element.getElementsByTagName("img")[0];
+    if(cardTxt == undefined){
+        element.style.display = "none";
+    }
+    else{
+        element.style.display = "block";
+    }
+});
+
+
+// code for all button
+
+let all = document.getElementById('all');
+all.addEventListener('click', function(e){
+  let notes = localStorage.getItem("notes");
+  if (notes == null) {
+    notesObj = [];
+  } else {
+    notesObj = JSON.parse(notes);
+  }
+
+  let notecards = document.getElementsByClassName("notecard");
+  Array.from(notecards).forEach(function(element){
+    
+        element.style.display = "block";
+  });
+
+});
+  
+
 });

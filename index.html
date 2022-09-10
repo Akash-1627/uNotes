@@ -52,8 +52,16 @@
             text-shadow: 4px 4px 20px #fff;
 
         }
-        .btn{
-            border: 2px solid rgb(5, 119, 240);
+        .buttons{
+          display: flex;
+          justify-content: center;
+        }
+        
+        .buttons .btn{
+          margin: 4px 4px;
+          transition: 0.3s;
+          font-size: 15px;
+          font-weight: 600;
         }
         .btn:hover{
             background-color: transparent;
@@ -88,6 +96,15 @@
         }
         .dispBlock{
           display: block;
+        }
+
+        .add{
+          display: block;
+
+        }
+        .rem{
+          display: none;
+
         }
         
 
@@ -153,6 +170,10 @@
       <hr />
       <h1 style="text-align: center;">Your Notes</h1>
       <hr />
+      <div class="buttons" id="buttons">
+        <button type="button" class="btn btn-primary" id="all">All</button>
+        <button type="button" class="btn btn-primary" id="imp">Important</button>
+      </div>
       
       <div id="notes" class="row container-fluid">
         
