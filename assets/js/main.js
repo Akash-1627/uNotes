@@ -1,4 +1,3 @@
-
 showNotes();
 
 // adding a note and updating it to local storage
@@ -10,13 +9,11 @@ addbtn.addEventListener("click", function (e) {
 
   let imag;
   let checkBx = document.getElementById("checkBx");
-  if(checkBx.checked){
+  if (checkBx.checked) {
     imag = `<img class="image" id="image" src="./assets/img/star.png">`;
-  }
-  else{
+  } else {
     imag = "";
   }
-
 
   let notes = localStorage.getItem("notes");
   if (notes == null) {
@@ -25,18 +22,17 @@ addbtn.addEventListener("click", function (e) {
     notesObj = JSON.parse(notes);
   }
   let myObj = {
-    title: addTitle.value, 
+    title: addTitle.value,
     text: addTxt.value,
     check: checkBx.checked,
-    checkbox: imag
-  }
-  
+    checkbox: imag,
+  };
+
   notesObj.push(myObj);
   localStorage.setItem("notes", JSON.stringify(notesObj));
   addTxt.value = "";
   addTitle.value = "";
   checkBx.checked = false;
-  
 
   showNotes();
 });
@@ -70,28 +66,22 @@ function showNotes() {
 
         </div>
       </div> `;
-      
   });
-  
-  let buttons = document.getElementById('buttons');
+
+  let buttons = document.getElementById("buttons");
   let notesElm = document.getElementById("notes");
   if (notesObj.length != 0) {
     notesElm.innerHTML = html;
     buttons.style.display = "flex";
-    
-    
   } else {
     notesElm.innerHTML = `<center><b>Nothing to show! Use "Add Note" to add your first note.</b></center>`;
     buttons.style.display = "none";
-    
-    
   }
 }
 
 // code for checkbox
 
 addbtn.addEventListener("click", function (e) {
-
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
@@ -101,25 +91,18 @@ addbtn.addEventListener("click", function (e) {
 
   let image = document.getElementById("image");
 
-  if(notesObj.checkbox == true){
-    
-    
-    image.classList.add('dispBlock');
-  }
-  else{
-    
-    
-    image.classList.add('dispNone');
+  if (notesObj.checkbox == true) {
+    image.classList.add("dispBlock");
+  } else {
+    image.classList.add("dispNone");
   }
 
   showNotes();
-
 });
 
 // function for deleting a note
 
 function deleteNote(index) {
-
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
@@ -132,10 +115,9 @@ function deleteNote(index) {
   showNotes();
 }
 
-
 // function for editing the note
 
-function editNote(index){
+function editNote(index) {
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
@@ -143,49 +125,46 @@ function editNote(index){
     notesObj = JSON.parse(notes);
   }
   let popped = notesObj[index];
-  
-  let checkBx = document.getElementById("checkBx")
-  let addTitle = document.getElementById("title");
-  let addTxt = document.getElementById('addTxt');
-  addTitle.value = `${popped.title}`;
-  addTxt.value =`${popped.text}`;
-  if(popped.check == true){
-    checkBx.checked = true;
 
-  }
-  else{
+  let checkBx = document.getElementById("checkBx");
+  let addTitle = document.getElementById("title");
+  let addTxt = document.getElementById("addTxt");
+  addTitle.value = `${popped.title}`;
+  addTxt.value = `${popped.text}`;
+  if (popped.check == true) {
+    checkBx.checked = true;
+  } else {
     checkBx.checked = false;
   }
-  
-  deleteNote();
-}
 
+  deleteNote(index);
+}
 
 // code for the search bar
 
-let search = document.getElementById('searchTxt');
-search.addEventListener("input", function(){
-    let inputVal = search.value.toLowerCase();
-    let notecards = document.getElementsByClassName("notecard");
-    Array.from(notecards).forEach(function(element){
-        let cardTxt = element.getElementsByTagName("p")[0].innerText.toLowerCase();
-        let cardTitle = element.getElementsByTagName("h5")[0].innerText.toLowerCase();
-        if(cardTxt.includes(inputVal) || cardTitle.includes(inputVal)){
-            element.style.display = "block";
-        }
-        else{
-            element.style.display = "none";
-        }
-    });
+let search = document.getElementById("searchTxt");
+search.addEventListener("input", function () {
+  let inputVal = search.value.toLowerCase();
+  let notecards = document.getElementsByClassName("notecard");
+  Array.from(notecards).forEach(function (element) {
+    let cardTxt = element.getElementsByTagName("p")[0].innerText.toLowerCase();
+    let cardTitle = element
+      .getElementsByTagName("h5")[0]
+      .innerText.toLowerCase();
+    if (cardTxt.includes(inputVal) || cardTitle.includes(inputVal)) {
+      element.style.display = "block";
+    } else {
+      element.style.display = "none";
+    }
+  });
 });
 
 // code for filtering buttons
 
-
 // code for important button
 
-let imp = document.getElementById('imp');
-imp.addEventListener('click', function(e){
+let imp = document.getElementById("imp");
+imp.addEventListener("click", function (e) {
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
@@ -194,35 +173,64 @@ imp.addEventListener('click', function(e){
   }
 
   let notecards = document.getElementsByClassName("notecard");
-  Array.from(notecards).forEach(function(element){
+  Array.from(notecards).forEach(function (element) {
     let cardTxt = element.getElementsByTagName("img")[0];
-    if(cardTxt == undefined){
-        element.style.display = "none";
+    if (cardTxt == undefined) {
+      element.style.display = "none";
+    } else {
+      element.style.display = "block";
     }
-    else{
-        element.style.display = "block";
-    }
-});
-
-
-// code for all button
-
-let all = document.getElementById('all');
-all.addEventListener('click', function(e){
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesObj = [];
-  } else {
-    notesObj = JSON.parse(notes);
-  }
-
-  let notecards = document.getElementsByClassName("notecard");
-  Array.from(notecards).forEach(function(element){
-    
-        element.style.display = "block";
   });
 
-});
-  
+  // code for all button
 
+  let all = document.getElementById("all");
+  all.addEventListener("click", function (e) {
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+      notesObj = [];
+    } else {
+      notesObj = JSON.parse(notes);
+    }
+
+    let notecards = document.getElementsByClassName("notecard");
+    Array.from(notecards).forEach(function (element) {
+      element.style.display = "block";
+    });
+  });
 });
+
+// code for navbar
+
+// window.onscroll = function() {scroll()};
+
+// function scroll(){
+//   let nav = document.getElementById('nav');
+
+  
+//   if(document.body.scrollTop>60 || document.documentElement.scrollTop>60){
+//     nav.style.position = "fixed";
+//   }
+//   else{
+//     nav.style.position = "none";
+//   }
+// }
+
+// if(document.body.scroll<60 || document.documentElement.scroll<60){
+//   nav.style.position = "none";
+// }
+
+// code for scrolltop button
+
+let scrolltop = document.getElementById('scroll-top');
+
+if(document.body.scrollTop>10 || document.documentElement.scrollTop > 10){
+  scrolltop.style.display = "flex";
+}
+else{
+  scrolltop.style.display = "none";
+}
+
+function scrollt(){
+  document.documentElement.scrollTop = 0;
+}

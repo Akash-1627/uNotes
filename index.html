@@ -17,13 +17,23 @@
             background: url('./assets/img/background.jfif') no-repeat center center/cover;
             
         }
+        .navbar{
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+        }
         
         .card{
             background-color: #fff;
             opacity: 0.8;
             box-shadow: 16px 16px 27px #111;
         }
-        
+
+        .container{
+          padding-top: 30px;
+        }
+
         .container-fluid{
             display: flex;
             justify-content: center;
@@ -62,9 +72,10 @@
           transition: 0.3s;
           font-size: 15px;
           font-weight: 600;
+          opacity: 0.8;
         }
         .btn:hover{
-            background-color: transparent;
+            background-color: #fff;
             color: rgb(5, 119, 240);
         }
 
@@ -106,12 +117,29 @@
           display: none;
 
         }
+        .page-footer{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .scroll-top{
+          position: relative;
+          display: flex;
+          /* flex-direction: row; */
+          justify-content: right;
+          /* padding-top: 75px; */
+          z-index: 200;
+          
+        }
+        .scroll-top .btn{
+          border-width: 2px;
+        }
         
 
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark" id="nav">
       <div class="container-fluid">
         <a class="navbar-brand" href="#" style="color: #fff">MyNotesWeb</a>
         <button
@@ -143,7 +171,7 @@
       </div>
     </nav>
 
-    <div class="container my-3">
+    <div class="container my-5">
       <h1 style="text-align: center;">Welcome to My Notes Web</h1>
       <div class="card">
         <div class="card-body">
@@ -178,14 +206,26 @@
       <div id="notes" class="row container-fluid">
         
       </div>
-    </div>
 
-    <footer class="page-footer font-small bg-dark">
+      <div class="scroll-top" id="scroll-top">
+        <button type="button" onclick="scrollt()" class="btn btn-outline-light"><i class="fa-solid fa-angles-up"></i></button>
+      </div>
 
       
+    </div>
+
+
+    
+    <footer class="page-footer font-small bg-dark">
+
+      <div>
+        <ul></ul>
+      </div>
       <div class="footer-copyright text-center py-2" style="color: #fff;">© 2022 Copyright:
         <a href="/"> Akash Chakraborty</a>
       </div>
+      
+      
       
     
     </footer>
@@ -196,6 +236,7 @@
       crossorigin="anonymous"
     ></script>
     
+    <script src="https://kit.fontawesome.com/d801dd03f0.js" crossorigin="anonymous"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
